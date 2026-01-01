@@ -1,5 +1,18 @@
 # TubeMod - Release Notes
 
+## 1.13.1
+
+Improve:
+- Code Quality:
+  - Fixed syntax errors in popup.html (double quotes in attribute values)
+  - Fixed duplicate IDs in HTML containers (Trending, Channel, Downloads sections)
+  - Improved variable declarations in popup.js (replaced `var` with `const`/`let`)
+  - Fixed undeclared variable `i` in for loop
+  - Improved code readability in content.js (renamed variable `a` to `downloadLink`)
+  - Simplified background.js by extracting duplicate popup logic into reusable function
+  - Removed commented code from popup.js
+  - Improved error handling in saveSettings function
+
 ## 1.13.0
 
 Add:

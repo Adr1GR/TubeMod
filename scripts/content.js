@@ -17,23 +17,24 @@ const PAGE_TYPES = {
 };
 
 function saveSettings() {
-  const a = document.createElement("a");
+  const downloadLink = document.createElement("a");
   chrome.storage.local.get(
     ["tubemod_elements", "tubemod_version"],
     (result) => {
       if (chrome.runtime.lastError) {
         console.error(chrome.runtime.lastError);
-      } else {
-        const file = new Blob([JSON.stringify(result)], {
-          type: "application/json",
-        });
-        a.href = URL.createObjectURL(file);
-        a.download = "tubeModSettings.json";
-        a.click();
+        return;
       }
+      const file = new Blob([JSON.stringify(result)], {
+        type: "application/json",
+      });
+      downloadLink.href = URL.createObjectURL(file);
+      downloadLink.download = "tubeModSettings.json";
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
     }
   );
-  document.body.removeChild(a);
 }
 
 function importSettings(settings) {
@@ -943,9 +944,10 @@ class YouTubeElement {
     );
 
     for (let i = 0; i < elements.snapshotLength; i++) {
-      hide
-        ? (elements.snapshotItem(i).style[this.property] = this.style)
-        : (elements.snapshotItem(i).style[this.property] = "");
+      const element = elements.snapshotItem(i);
+      if (element) {
+        element.style[this.property] = hide ? this.style : "";
+      }
     }
 
     if (this.id === "channel-trailer" && this.checked) {

@@ -1,5 +1,5 @@
-let inputs = document.querySelectorAll("input");
-let collapsibleElements = document.getElementsByClassName("collapsible");
+const inputs = document.querySelectorAll("input");
+const collapsibleElements = document.getElementsByClassName("collapsible");
 
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get(["tubemod_elements"], (result) => {
@@ -9,16 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (elements !== null) {
       elements.forEach((element) => {
-        if (document.getElementById(element.id)) {
-          document.getElementById(element.id).checked = element.checked;
+        const checkbox = document.getElementById(element.id);
+        if (checkbox) {
+          checkbox.checked = element.checked;
         }
       });
     }
 
-    for (i = 0; i < collapsibleElements.length; i++) {
+    for (let i = 0; i < collapsibleElements.length; i++) {
       collapsibleElements[i].addEventListener("click", function () {
         this.classList.toggle("active");
-        var content = this.nextElementSibling;
+        const content = this.nextElementSibling;
         if (content.style.display === "block") {
           content.style.display = "none";
         } else {
@@ -82,4 +83,3 @@ document
     });
   });
 
-// [...document.querySelectorAll('#sidebar input')].every(checkbox => checkbox.checked) -> if all the checkboxes are checked, we may want to collapse the sidebar or simply remove the left margin
