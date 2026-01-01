@@ -1,6 +1,24 @@
 const inputs = document.querySelectorAll("input");
 const collapsibleElements = document.getElementsByClassName("collapsible");
 
+function sendMessageToContentScript(message, callback) {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs.length === 0 || !tabs[0].url || !tabs[0].url.includes("youtube.com")) {
+      if (callback) callback(new Error("Not a YouTube tab"));
+      return;
+    }
+
+    chrome.tabs.sendMessage(tabs[0].id, message, (response) => {
+      if (chrome.runtime.lastError) {
+        console.warn("Content script not ready:", chrome.runtime.lastError.message);
+        if (callback) callback(chrome.runtime.lastError);
+        return;
+      }
+      if (callback) callback(null, response);
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get(["tubemod_elements"], (result) => {
     const elements = result.tubemod_elements
@@ -30,13 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     inputs.forEach((element) => {
       element.addEventListener("change", () => {
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-          chrome.tabs.sendMessage(tabs[0].id, {
-            action: {
-              target: element.id,
-              hide: element.checked,
-            },
-          });
+        sendMessageToContentScript({
+          action: {
+            target: element.id,
+            hide: element.checked,
+          },
         });
       });
     });
@@ -53,33 +69,28 @@ document.getElementById("reset-settings").addEventListener("click", () => {
   chrome.storage.local.clear(() => {
     console.info("Settings cleared.");
   });
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {
-      action: "clearLocalStorage",
-    });
+  sendMessageToContentScript({
+    action: "clearLocalStorage",
   });
   window.close();
 });
 
 document.getElementById("save-settings").addEventListener("click", () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {
-      action: "saveSettings",
-    });
+  sendMessageToContentScript({
+    action: "saveSettings",
   });
 });
 
 document
   .getElementById("import-settings")
   .addEventListener("change", async (e) => {
-    let file = e.target.files.item(0);
+    const file = e.target.files.item(0);
+    if (!file) return;
 
     const text = await file.text();
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {
-        action: "importSettings",
-        content: text,
-      });
+    sendMessageToContentScript({
+      action: "importSettings",
+      content: text,
     });
   });
 

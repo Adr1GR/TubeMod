@@ -2,6 +2,12 @@
 
 ## 1.13.1
 
+Fix:
+- Communication:
+  - Fixed "Could not establish connection" error when content script is not loaded
+  - Added proper error handling for messages sent to content script
+  - Added validation to ensure messages are only sent to YouTube tabs
+
 Improve:
 - Code Quality:
   - Fixed syntax errors in popup.html (double quotes in attribute values)
@@ -12,6 +18,7 @@ Improve:
   - Simplified background.js by extracting duplicate popup logic into reusable function
   - Removed commented code from popup.js
   - Improved error handling in saveSettings function
+  - Refactored message sending logic into reusable helper function with error handling
 
 ## 1.13.0
 
