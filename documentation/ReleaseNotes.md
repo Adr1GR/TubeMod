@@ -19,6 +19,18 @@ Improve:
   - Removed commented code from popup.js
   - Improved error handling in saveSettings function
   - Refactored message sending logic into reusable helper function with error handling
+- Code Architecture:
+  - Refactored content.js into modular structure for better maintainability
+  - Separated code into dedicated modules:
+    - `constants.js` - All constants and page type definitions
+    - `utils.js` - Utility functions (settings, page detection, helpers)
+    - `storage.js` - Storage configuration and element definitions
+    - `eventBus.js` - Event bus system
+    - `YouTubeElement.js` - YouTubeElement class
+    - `ElementManager.js` - ElementManager class
+    - `TubeMod.js` - Main TubeMod class and initialization
+  - Improved code organization and separation of concerns
+  - Enhanced code readability and maintainability
 
 ## 1.13.0
 
