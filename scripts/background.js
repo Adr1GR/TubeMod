@@ -1,19 +1,19 @@
+function setPopupForTab(tab) {
+  if (!tab || !tab.url) {
+    return;
+  }
+  
+  const isYouTube = tab.url.includes("youtube.com");
+  const popupPath = isYouTube ? "../public/popup.html" : "../public/error.html";
+  chrome.action.setPopup({ popup: popupPath });
+}
+
 chrome.tabs.onActivated.addListener((activeInfo) => {
-  chrome.tabs.get(activeInfo.tabId, (tab) => {
-    if (tab.url && tab.url.includes("youtube.com")) {
-      chrome.action.setPopup({ popup: "../public/popup.html" });
-    } else {
-      chrome.action.setPopup({ popup: "../public/error.html" });
-    }
-  });
+  chrome.tabs.get(activeInfo.tabId, setPopupForTab);
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === "complete" && tab.url) {
-    if (tab.url.includes("youtube.com")) {
-      chrome.action.setPopup({ popup: "../public/popup.html" });
-    } else {
-      chrome.action.setPopup({ popup: "" });
-    }
+  if (changeInfo.status === "complete") {
+    setPopupForTab(tab);
   }
 });

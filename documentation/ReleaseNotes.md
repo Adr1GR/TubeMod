@@ -1,5 +1,37 @@
 # TubeMod - Release Notes
 
+## 1.13.1
+
+Fix:
+- Communication:
+  - Fixed "Could not establish connection" error when content script is not loaded
+  - Added proper error handling for messages sent to content script
+  - Added validation to ensure messages are only sent to YouTube tabs
+
+Improve:
+- Code Quality:
+  - Fixed syntax errors in popup.html (double quotes in attribute values)
+  - Fixed duplicate IDs in HTML containers (Trending, Channel, Downloads sections)
+  - Improved variable declarations in popup.js (replaced `var` with `const`/`let`)
+  - Fixed undeclared variable `i` in for loop
+  - Improved code readability in content.js (renamed variable `a` to `downloadLink`)
+  - Simplified background.js by extracting duplicate popup logic into reusable function
+  - Removed commented code from popup.js
+  - Improved error handling in saveSettings function
+  - Refactored message sending logic into reusable helper function with error handling
+- Code Architecture:
+  - Refactored content.js into modular structure for better maintainability
+  - Separated code into dedicated modules:
+    - `constants.js` - All constants and page type definitions
+    - `utils.js` - Utility functions (settings, page detection, helpers)
+    - `storage.js` - Storage configuration and element definitions
+    - `eventBus.js` - Event bus system
+    - `YouTubeElement.js` - YouTubeElement class
+    - `ElementManager.js` - ElementManager class
+    - `TubeMod.js` - Main TubeMod class and initialization
+  - Improved code organization and separation of concerns
+  - Enhanced code readability and maintainability
+
 ## 1.13.0
 
 Add:
