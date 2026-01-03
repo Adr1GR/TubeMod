@@ -1,5 +1,5 @@
 const STORAGE = {
-  tubemod_version: "1.13.0",
+  tubemod_version: "1.13.2",
   tubemod_elements: [
     {
       id: "scheduled-videos",
@@ -21,7 +21,15 @@ const STORAGE = {
     },
     {
       id: "video-previews",
-      selector: "//div[@id='video-preview' or @id='mouseover-overlay']",
+      selector: "//div[@id='video-preview' or @id='mouseover-overlay'] | //animated-thumbnail-overlay-view-model",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "card-colored-background",
+      selector: "//yt-touch-feedback-shape",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -29,7 +37,7 @@ const STORAGE = {
     },
     {
       id: "video-thumbnails",
-      selector: "//div[@id='thumbnail'] | //yt-collection-thumbnail-view-model",
+      selector: "//yt-thumbnail-view-model | //div[@id = 'thumbnail'] | //a[@class='yt-lockup-view-model__content-image']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -38,27 +46,29 @@ const STORAGE = {
     {
       id: "video-thumbnails-blur",
       selector:
-        "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail | //yt-thumbnail-view-model",
+        "//ytd-thumbnail//yt-image | //ytd-playlist-thumbnail | //yt-thumbnail-view-model/div",
       checked: false,
-      property: FILTER,
-      style: "blur(10px)",
-      pageTypes: [],
-    },
-    {
-      id: "video-meta-data",
-      selector: "//div[@id='metadata-line']",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
+      styles: {
+        filter: "blur(15px)",
+        overflow: "hidden",
+      },
       pageTypes: [],
     },
     {
       id: "lowercase-title",
       selector:
-        "//ytd-watch-metadata//div[@id='title'] | //*[@id='video-title']",
+        "//ytd-watch-metadata//div[@id='title'] | //*[@id='video-title'] | //yt-lockup-metadata-view-model/div/h3/a/span | //ytm-shorts-lockup-view-model/div/div/h3/a/span",
       checked: false,
       property: TEXT_TRANSFORM,
       style: LOWERCASE,
+      pageTypes: [],
+    },
+    {
+      id: "video-meta-data",
+      selector: "//div[@id='metadata-line'] | //div[@class='yt-content-metadata-view-model__metadata-row'][span[@class='yt-content-metadata-view-model__delimiter']] | //div[contains(@class, 'shortsLockupViewModelHostMetadataSubhead')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
       pageTypes: [],
     },
     {
@@ -117,6 +127,110 @@ const STORAGE = {
       pageTypes: [],
     },
     {
+      id: "profile-google-account",
+      selector: "//ytd-compact-link-renderer[contains(., 'Google Account')] | //ytd-compact-link-renderer/a[contains(@href, 'accounts.google.com')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-switch-account",
+      selector: "//ytd-compact-link-renderer[contains(., 'Switch account')] | //ytd-compact-link-renderer[contains(., 'Cambiar cuenta')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-youtube-studio",
+      selector: "//ytd-compact-link-renderer[contains(., 'YouTube Studio')] | //ytd-compact-link-renderer/a[contains(@href, 'studio.youtube.com')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-purchases-memberships",
+      selector: "//ytd-compact-link-renderer[contains(., 'Purchases and memberships')] | //ytd-compact-link-renderer[contains(., 'Compras y suscripciones')] | //ytd-compact-link-renderer/a[contains(@href, '/paid_memberships')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-your-data",
+      selector: "//ytd-compact-link-renderer[contains(., 'Your data in YouTube')] | //ytd-compact-link-renderer[contains(., 'Tus datos en YouTube')] | //ytd-compact-link-renderer/a[contains(@href, '/account') and contains(., 'data')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-appearance",
+      selector: "//ytd-compact-link-renderer[contains(., 'Appearance')] | //ytd-compact-link-renderer[contains(., 'Apariencia')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-language",
+      selector: "//ytd-compact-link-renderer[contains(., 'Display language')] | //ytd-compact-link-renderer[contains(., 'Idioma')] | //ytd-compact-link-renderer[contains(., 'Idioma de visualización')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-restricted-mode",
+      selector: "//ytd-compact-link-renderer[contains(., 'Restricted Mode')] | //ytd-compact-link-renderer[contains(., 'Modo restringido')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-location",
+      selector: "//ytd-compact-link-renderer[contains(., 'Location')] | //ytd-compact-link-renderer[contains(., 'Ubicación')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-keyboard-shortcuts",
+      selector: "//ytd-compact-link-renderer[contains(., 'Keyboard shortcuts')] | //ytd-compact-link-renderer[contains(., 'Atajos de teclado')] | //ytd-compact-link-renderer/a[contains(@href, 'keyboard_shortcuts')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-settings",
+      selector: "//ytd-compact-link-renderer[contains(., 'Settings') and not(contains(., 'Appearance'))] | //ytd-compact-link-renderer[contains(., 'Configuración') and not(contains(., 'Apariencia'))] | //ytd-compact-link-renderer/a[contains(@href, '/account') and contains(., 'Settings')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-help",
+      selector: "//ytd-compact-link-renderer[contains(., 'Help')] | //ytd-compact-link-renderer[contains(., 'Ayuda')] | //ytd-compact-link-renderer/a[contains(@href, '/help')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "profile-send-feedback",
+      selector: "//ytd-compact-link-renderer[contains(., 'Send feedback')] | //ytd-compact-link-renderer[contains(., 'Enviar comentarios')] | //ytd-compact-link-renderer/a[contains(@href, 'feedback')]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
       id: "profile-sign-out",
       selector: "//ytd-compact-link-renderer/a[@href='/logout']",
       checked: false,
@@ -152,6 +266,14 @@ const STORAGE = {
       pageTypes: [],
     },
     {
+      id: "subscriptions-panel",
+      selector: "(//ytd-guide-section-renderer)[2]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
       id: "subscriptions",
       selector:
         "//ytd-guide-entry-renderer[a[@href='/feed/subscriptions']] | //ytd-mini-guide-entry-renderer[a[@href='/feed/subscriptions']]",
@@ -161,9 +283,26 @@ const STORAGE = {
       pageTypes: [],
     },
     {
-      id: "youtube-music",
+      id: "subscriptions-panel-new-indicator",
       selector:
-        "(//ytd-guide-entry-renderer[a[@href='https://music.youtube.com/']])[1] | //ytd-mini-guide-entry-renderer[a[@href='https://music.youtube.com/']]",
+        "//ytd-guide-entry-renderer[@line-end-style='dot']//div[@id='newness-dot']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "subscriptions-panel-live-indicator",
+      selector:
+        "//yt-icon/span/div/svg/path[@d='M4.222 4.223a11 11 0 000 15.555 1 1 0 101.414-1.414 9 9 0 010-12.727 1 1 0 10-1.414-1.414Zm13.79.353a1 1 0 000 1.414 8.5 8.5 0 010 12.022 1 1 0 001.413 1.414 10.501 10.501 0 000-14.85 1 1 0 00-1.413 0Zm-2.83 2.827a1 1 0 000 1.414 4.501 4.501 0 010 6.365 1.001 1.001 0 001.414 1.414 6.5 6.5 0 000-9.193 1 1 0 00-1.415 0Zm-7.78 0a6.5 6.5 0 000 9.194 1 1 0 001.415-1.415 4.5 4.5 0 010-6.364 1.001 1.001 0 00-1.415-1.415ZM12 10a2 2 0 100 4 2 2 0 000-4Z']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "you-panel",
+      selector: "(//ytd-guide-section-renderer)[3]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -172,7 +311,7 @@ const STORAGE = {
     {
       id: "you",
       selector:
-        "(//div[@id='header']/ytd-guide-entry-renderer)[1] | //ytd-mini-guide-entry-renderer[a[@href='/feed/you']]",
+        "//ytd-guide-entry-renderer[@id ='header-entry'][a[@href='/feed/you']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -195,9 +334,42 @@ const STORAGE = {
       pageTypes: [],
     },
     {
+      id: "watch-later",
+      selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=WL']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "liked-videos",
+      selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=LL']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
       id: "my-videos",
       selector:
         "//ytd-guide-entry-renderer[a[starts-with(@href, 'https://studio.youtube.com/channel')]]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "you-downloads",
+      selector:
+        "//div[@id='section-items']/ytd-guide-downloads-entry-renderer  | //ytd-mini-guide-entry-renderer[a[@href='/feed/downloads']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "my-clips",
+      selector: "//ytd-guide-entry-renderer[a[@href='/feed/clips']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -221,14 +393,6 @@ const STORAGE = {
       pageTypes: [],
     },
     {
-      id: "watch-later",
-      selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=WL']]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
       id: "courses",
       selector: "//ytd-guide-entry-renderer[a[@href='/feed/courses']]",
       checked: false,
@@ -236,58 +400,16 @@ const STORAGE = {
       style: DISPLAY_NONE,
       pageTypes: [],
     },
-    {
-      id: "liked-videos",
-      selector: "//ytd-guide-entry-renderer[a[@href='/playlist?list=LL']]",
+/*     {
+      id: "you-show-more-less",
+      selector: "//ytd-guide-entry-renderer[a[@href='/feed/courses']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
       pageTypes: [],
-    },
-    {
-      id: "my-clips",
-      selector: "//ytd-guide-entry-renderer[a[@href='/feed/clips']]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "transfers",
-      selector:
-        "//div[@id='section-items']/ytd-guide-downloads-entry-renderer  | //ytd-mini-guide-entry-renderer[a[@href='/feed/downloads']]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "subscriptions-panel",
-      selector: "(//ytd-guide-section-renderer)[2]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "subscriptions-panel-new-indicator",
-      selector:
-        "//ytd-guide-entry-renderer[@line-end-style='dot']//div[@id='newness-dot']",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
+    }, */
     {
       id: "explore-panel",
-      selector: "(//ytd-guide-section-renderer)[3]",
-      checked: false,
-      property: DISPLAY,
-      style: DISPLAY_NONE,
-      pageTypes: [],
-    },
-    {
-      id: "youtube-panel",
       selector: "(//ytd-guide-section-renderer)[4]",
       checked: false,
       property: DISPLAY,
@@ -295,8 +417,52 @@ const STORAGE = {
       pageTypes: [],
     },
     {
-      id: "youtube-settings",
+      id: "more-from-youtube-panel",
       selector: "(//ytd-guide-section-renderer)[5]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+     {
+      id: "youtube-premium",
+      selector:
+        "//ytd-guide-entry-renderer[a[@href='/premium']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    }, 
+    {
+      id: "youtube-studio",
+      selector:
+        "//ytd-guide-entry-renderer[a[@href='https://studio.youtube.com/']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "youtube-music",
+      selector:
+        "//ytd-guide-entry-renderer[a[@href='https://music.youtube.com/']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+  {
+      id: "youtube-kids",
+      selector:
+        "//ytd-guide-entry-renderer[a[@href='https://www.youtubekids.com/?source=youtube_web']]",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [],
+    },
+    {
+      id: "settings-panel",
+      selector: "(//ytd-guide-section-renderer)[6]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -480,7 +646,7 @@ const STORAGE = {
     {
       id: "video-settings-playback-speed",
       selector:
-        "//div[@role='menuitem'][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M10,8v8l6-4L10,8L10,8z M6.3,5L5.7,4.2C7.2,3,9,2.2,11,2l0.1,1C9.3,3.2,7.7,3.9,6.3,5z            M5,6.3L4.2,5.7C3,7.2,2.2,9,2,11 l1,.1C3.2,9.3,3.9,7.7,5,6.3z            M5,17.7c-1.1-1.4-1.8-3.1-2-4.8L2,13c0.2,2,1,3.8,2.2,5.4L5,17.7z            M11.1,21c-1.8-0.2-3.4-0.9-4.8-2 l-0.6,.8C7.2,21,9,21.8,11,22L11.1,21z            M22,12c0-5.2-3.9-9.4-9-10l-0.1,1c4.6,.5,8.1,4.3,8.1,9s-3.5,8.5-8.1,9l0.1,1 C18.2,21.5,22,17.2,22,12z']]",
+        "//div[@role='menuitem'][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M12 1c1.44 0 2.87.28 4.21.83a11 11 0 0 1 3.45 2.27l-1.81 1.05A9 9 0 0 0 3 12a9 9 0 0 0 18-.00l-.01-.44a8.99 8.99 0 0 0-.14-1.20l1.81-1.05A11.00 11.00 0 0 1 10.51 22.9 11 11 0 0 1 12 1Zm7.08 6.25-7.96 3.25a1.74 1.74 0 1 0 1.73 2.99l6.8-5.26a.57.57 0 0 0-.56-.98Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -489,7 +655,7 @@ const STORAGE = {
     {
       id: "video-settings-sleep-timer",
       selector:
-        "//div[@role='menuitem'][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M16.67,4.31C19.3,5.92,21,8.83,21,12c0,4.96-4.04,9-9,9c-2.61,0-5.04-1.12-6.72-3.02C5.52,17.99,5.76,18,6,18 c6.07,0,11-4.93,11-11C17,6.08,16.89,5.18,16.67,4.31 M14.89,2.43C15.59,3.8,16,5.35,16,7c0,5.52-4.48,10-10,10 c-1,0-1.97-0.15-2.89-0.43C4.77,19.79,8.13,22,12,22c5.52,0,10-4.48,10-10C22,7.48,19,3.67,14.89,2.43L14.89,2.43z M12,6H6v1h4.5 L6,10.99v0.05V12h6v-1H7.5L12,7.01V6.98V6L12,6z']]",
+        "//div[@role='menuitem'][.//*[local-name() = 'svg']//*[local-name() = 'path' and @d='M12.33 1.00C12.22 1.00 12.11 1.00 12 1C5.92 1 1 5.92 1 12C1 18.07 5.92 23 12 23C13.90 23.00 15.78 22.50 17.44 21.55C19.10 20.61 20.48 19.25 21.46 17.61L21.64 17.29C22.06 16.52 21.21 15.73 20.35 15.88C18.76 16.15 17.12 15.94 15.66 15.27C14.19 14.59 12.97 13.49 12.14 12.11C11.31 10.73 10.91 9.13 11.01 7.52C11.11 5.91 11.69 4.37 12.67 3.09L12.89 2.83C13.45 2.16 13.20 1.03 12.33 1.00ZM15.56 2.60C15.45 2.84 15.43 3.11 15.51 3.36C15.59 3.61 15.77 3.82 16.01 3.94C16.91 4.39 17.73 4.99 18.44 5.71L18.73 6.03L18.80 6.10C18.99 6.27 19.22 6.36 19.47 6.37C19.72 6.37 19.96 6.28 20.15 6.12C20.33 5.95 20.45 5.72 20.48 5.48C20.51 5.23 20.44 4.98 20.29 4.78L20.23 4.70L19.87 4.31C19.01 3.43 18.01 2.70 16.90 2.15C16.67 2.03 16.39 2.01 16.14 2.10C15.89 2.18 15.68 2.36 15.56 2.60M10.24 3.17C9.42 4.64 8.99 6.31 9 8C9 13.42 13.32 17.84 18.71 17.99C17.86 18.93 16.83 19.69 15.67 20.21C14.52 20.73 13.26 21.00 12 21C9.76 21.00 7.60 20.17 5.95 18.67C4.29 17.17 3.25 15.10 3.03 12.88C2.81 10.65 3.43 8.43 4.76 6.63C6.09 4.84 8.05 3.60 10.24 3.17M21.16 7.88C20.93 7.96 20.73 8.12 20.61 8.34C20.49 8.55 20.45 8.81 20.50 9.05L20.53 9.15L20.66 9.56C20.93 10.53 21.04 11.54 20.98 12.55C20.97 12.81 21.06 13.06 21.23 13.26C21.41 13.45 21.65 13.57 21.92 13.59C22.18 13.60 22.44 13.52 22.63 13.34C22.83 13.17 22.95 12.93 22.97 12.67C23.05 11.44 22.92 10.20 22.58 9.02L22.43 8.51L22.39 8.42C22.29 8.19 22.11 8.01 21.88 7.91C21.65 7.81 21.40 7.80 21.16 7.88Z']]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -688,7 +854,7 @@ const STORAGE = {
     },
     {
       id: "video-comments-avatars",
-      selector: "//ytd-comments[@id='comments']//div[@id='author-thumbnail']/a",
+      selector: "//div[@id='author-thumbnail']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -696,7 +862,7 @@ const STORAGE = {
     },
     {
       id: "video-comments-replies",
-      selector: "//ytd-comments[@id='comments']//div[@id='replies']",
+      selector: "//ytd-comments[@id='comments']//div[@id='replies'] | //div[@class='continuation style-scope ytd-comment-view-model']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -737,7 +903,7 @@ const STORAGE = {
     {
       id: "video-suggested-videos",
       selector:
-        "//div[@id='contents']/parent::ytd-item-section-renderer[contains(@class, 'watch-next')]",
+        "//div[@class='ytp-fullscreen-grid'][//a[contains(@class, 'ytp-suggestion-set')]]/div[@class='ytp-fullscreen-grid-main-content']",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -746,7 +912,7 @@ const STORAGE = {
     {
       id: "video-suggested-videos-new-badge",
       selector:
-        "//ytd-compact-video-renderer//div/ytd-badge-supported-renderer[.//div[contains(@class, 'badge')]]",
+        "//div[contains(@class ,'yt-content-metadata-view-model__metadata-row--metadata-row-wrap')]",
       checked: false,
       property: DISPLAY,
       style: DISPLAY_NONE,
@@ -782,6 +948,20 @@ const STORAGE = {
       property: BACKGROUND,
       style: YT_RED,
       pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "video-progress-heat-map",
+      selector: "//div[@class='ytp-heat-map-container']",
+      checked: false,
+      property: DISPLAY,
+      style: DISPLAY_NONE,
+      pageTypes: [PAGE_TYPES.VIDEO],
+    },
+    {
+      id: "remove-rounded-borders",
+      selector: "//body",
+      checked: false,
+      pageTypes: [],
     },
   ],
 };

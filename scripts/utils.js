@@ -28,27 +28,43 @@ function importSettings(settings) {
   alert("TubeMod settings uploaded and applied!");
 }
 
+let cachedPageType = null;
+let cachedUrl = null;
+
 function getCurrentPageType() {
   const url = window.location.href;
+  if (cachedUrl === url && cachedPageType !== null) {
+    return cachedPageType;
+  }
+
+  let pageType = null;
   if (
     url === "https://www.youtube.com/" ||
     url.startsWith("https://www.youtube.com/?")
   ) {
-    return PAGE_TYPES.HOME;
+    pageType = PAGE_TYPES.HOME;
   } else if (url.includes("/watch")) {
-    return PAGE_TYPES.VIDEO;
+    pageType = PAGE_TYPES.VIDEO;
   } else if (url.includes("/feed/subscriptions")) {
-    return PAGE_TYPES.SUBSCRIPTIONS;
+    pageType = PAGE_TYPES.SUBSCRIPTIONS;
   } else if (url.includes("/results?search_query")) {
-    return PAGE_TYPES.SEARCH;
+    pageType = PAGE_TYPES.SEARCH;
   } else if (url.includes("/feed/trending")) {
-    return PAGE_TYPES.TRENDING;
+    pageType = PAGE_TYPES.TRENDING;
   } else if (url.includes("/feed/downloads")) {
-    return PAGE_TYPES.DOWNLOADS;
+    pageType = PAGE_TYPES.DOWNLOADS;
   } else if (url.includes("/@")) {
-    return PAGE_TYPES.CHANNEL;
+    pageType = PAGE_TYPES.CHANNEL;
   }
-  return null;
+
+  cachedPageType = pageType;
+  cachedUrl = url;
+  return pageType;
+}
+
+function clearPageTypeCache() {
+  cachedPageType = null;
+  cachedUrl = null;
 }
 
 function waitForElements(selector, callback) {

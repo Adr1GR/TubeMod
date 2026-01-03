@@ -1,5 +1,50 @@
 # TubeMod - Release Notes
 
+## 1.13.2
+
+Add:
+
+- Added search bar to filter settings by title
+
+- General:
+  - Remove Rounded borders
+  - [On hover] Hide Video Previews now works on suggested videos in Video Page
+  - [On hover] Remove Card Background
+  
+- Sidebar:
+  - Hide 'You' Panel
+  - Hide 'More from Youtube' Panel
+  - Hide 'YouTube Premium' Button
+  - Hide 'YouTube Studio' Button
+  - Hide 'YouTube Kids' Button
+
+- Profile Settings:
+  - Hide Google Account
+  - Hide Switch Account
+  - Hide YouTube Studio
+  - Hide Purchases and Memberships
+  - Hide Your Data in YouTube
+  - Hide Appearance
+  - Hide Display Language
+  - Hide Restricted Mode
+  - Hide Location
+  - Hide Keyboard Shortcuts
+  - Hide Settings
+  - Hide Help
+  - Hide Send Feedback
+
+- Video
+  - Added Hide Heat Map
+
+Fix:
+- XPath Selectors:
+  - Fixed selector for Hide Video Thumbnails to properly target video thumbnails
+  - Fixed selector for Blur Video Thumbnails to correctly apply blur effect
+  - Fixed selector for Set all Video Titles to lowercase to include Shorts titles
+  - Fixed selector for Hide Video Views and Posted Time to cover all metadata formats
+  - Fixed selector for Hide 'You' Button
+  - Fixed selector for Hide Comments Avatars
+
 ## 1.13.1
 
 Fix:

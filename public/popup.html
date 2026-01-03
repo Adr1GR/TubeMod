@@ -7,8 +7,12 @@
 <html>
   <body>
     <div class="title-container">
-      <h1>TubeMod</h1>
+      <h1>TubeMod+</h1>
       <h3>Make YouTube your own!</h3>
+    </div>
+    <div class="search-container">
+      <input type="text" id="settings-search" placeholder="Search settings..." />
+      <button id="clear-search" class="clear-search-btn" style="display: none;">×</button>
     </div>
 
     <button class="collapsible">General</button>
@@ -31,13 +35,7 @@
           <span class="slider round"></span>
         </label>
       </div>
-      <div class="checkbox-container">
-        <label for="video-previews">Hide Video Previews (on hover)</label>
-        <label class="switch">
-          <input type="checkbox" id="video-previews" name="video-previews" />
-          <span class="slider round"></span>
-        </label>
-      </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
         <label for="video-thumbnails">Hide Video Thumbnails</label>
         <label class="switch">
@@ -71,6 +69,28 @@
         <label for="video-meta-data">Hide Video Views and Posted Time</label>
         <label class="switch">
           <input type="checkbox" id="video-meta-data" name="video-meta-data" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-previews"><span class="new-badge">NEW</span>[On hover] Hide Video Previews</label>
+        <label class="switch">
+          <input type="checkbox" id="video-previews" name="video-previews" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="card-colored-background"><span class="new-badge">NEW</span>[On hover] Remove Card Background</label>
+        <label class="switch">
+          <input type="checkbox" id="card-colored-background" name="card-colored-background" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
+      <div class="checkbox-container">
+        <label for="remove-rounded-borders"><span class="new-badge">NEW</span>Remove Rounded borders</label>
+        <label class="switch">
+          <input type="checkbox" id="remove-rounded-borders" name="remove-rounded-borders" />
           <span class="slider round"></span>
         </label>
       </div>
@@ -134,9 +154,103 @@
     <button class="collapsible">Profile Settings</button>
     <div class="container" id="profile-settings" style="display: none;">
       <div class="checkbox-container">
+        <label for="profile-google-account">Hide Google Account</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-google-account" name="profile-google-account" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-switch-account">Hide Switch Account</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-switch-account" name="profile-switch-account" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
         <label for="profile-sign-out">Hide Sign Out Button</label>
         <label class="switch">
           <input type="checkbox" id="profile-sign-out" name="profile-sign-out" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
+      <div class="checkbox-container">
+        <label for="profile-youtube-studio">Hide YouTube Studio</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-youtube-studio" name="profile-youtube-studio" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-purchases-memberships">Hide Purchases and Memberships</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-purchases-memberships" name="profile-purchases-memberships" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
+      <div class="checkbox-container">
+        <label for="profile-your-data">Hide Your Data in YouTube</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-your-data" name="profile-your-data" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-appearance">Hide Appearance</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-appearance" name="profile-appearance" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-language">Hide Display Language</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-language" name="profile-language" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-restricted-mode">Hide Restricted Mode</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-restricted-mode" name="profile-restricted-mode" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-location">Hide Location</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-location" name="profile-location" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-keyboard-shortcuts">Hide Keyboard Shortcuts</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-keyboard-shortcuts" name="profile-keyboard-shortcuts" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
+      <div class="checkbox-container">
+        <label for="profile-settings">Hide Settings</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-settings" name="profile-settings" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-help">Hide Help</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-help" name="profile-help" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="profile-send-feedback">Hide Send Feedback</label>
+        <label class="switch">
+          <input type="checkbox" id="profile-send-feedback" name="profile-send-feedback" />
           <span class="slider round"></span>
         </label>
       </div>
@@ -151,121 +265,24 @@
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
-        <label for="home">Hide Home Page Button</label>
+        <label for="home">Hide 'Home' Button</label>
         <label class="switch">
           <input type="checkbox" id="home" name="home" />
           <span class="slider round"></span>
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="shorts">Hide Shorts Button</label>
+        <label for="shorts">Hide 'Shorts' Button</label>
         <label class="switch">
           <input type="checkbox" id="shorts" name="shorts" />
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
-        <label for="subscriptions">Hide Subscriptions Button</label>
-        <label class="switch">
-          <input type="checkbox" id="subscriptions" name="subscriptions" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="youtube-music">Hide YouTube Music Button (Premium)</label>
-        <label class="switch">
-          <input type="checkbox" id="youtube-music" name="youtube-music" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="you">Hide You Button</label>
-        <label class="switch">
-          <input type="checkbox" id="you" name="you" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="history">Hide History Button</label>
-        <label class="switch">
-          <input type="checkbox" id="history" name="history" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="playlists">Hide Playlists Button</label>
-        <label class="switch">
-          <input type="checkbox" id="playlists" name="playlists" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="my-videos">Hide Your Videos Button</label>
-        <label class="switch">
-          <input type="checkbox" id="my-videos" name="my-videos" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="your-movies-and-tv">Hide Your Movies & TV Button</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="your-movies-and-tv"
-            name="your-movies-and-tv"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="your-podcasts">Hide Your Podcasts</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="your-podcasts"
-            name="your-podcasts"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="courses">Hide Your Courses Button</label>
-        <label class="switch">
-          <input type="checkbox" id="courses" name="courses" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="watch-later">Hide Watch Later Button</label>
-        <label class="switch">
-          <input type="checkbox" id="watch-later" name="watch-later" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="liked-videos">Hide Liked Videos Button</label>
-        <label class="switch">
-          <input type="checkbox" id="liked-videos" name="liked-videos" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="transfers">Hide Downloads Button (Premium)</label>
-        <label class="switch">
-          <input type="checkbox" id="transfers" name="transfers" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="my-clips">Hide Your Clips Button</label>
-        <label class="switch">
-          <input type="checkbox" id="my-clips" name="my-clips" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div class="checkbox-container">
-        <label for="subscriptions-panel">Hide Subscriptions Panel</label>
+        <label for="subscriptions-panel">Hide 'Subscriptions' Panel</label>
         <label class="switch">
           <input
             type="checkbox"
@@ -276,7 +293,14 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="subscriptions-panel-new-indicator">Hide Subscribed Channel New Indicator<br>(Blue Dot)</label>
+        <label for="subscriptions">Hide 'Subscriptions' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="subscriptions" name="subscriptions" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="subscriptions-panel-new-indicator">Hide New Video Indicator (Blue Dot)</label>
         <label class="switch">
           <input
             type="checkbox"
@@ -286,31 +310,167 @@
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
-        <label for="explore-panel">Hide Explore Panel</label>
+        <label for="you-panel"><span class="new-badge">NEW</span>Hide 'You' Panel</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="you-panel"
+            name="you-panel"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="you">Hide 'You' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="you" name="you" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="history">Hide 'History' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="history" name="history" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="playlists">Hide 'Playlists' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="playlists" name="playlists" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="watch-later">Hide 'Watch later' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="watch-later" name="watch-later" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="liked-videos">Hide 'Liked videos' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="liked-videos" name="liked-videos" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="my-videos">Hide 'Your videos' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="my-videos" name="my-videos" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="you-downloads">Hide 'Downloads' Button (Premium)</label>
+        <label class="switch">
+          <input type="checkbox" id="you-downloads" name="you-downloads" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="my-clips">Hide 'Clips' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="my-clips" name="my-clips" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+<!--       <div class="checkbox-container">
+        <label for="your-movies-and-tv">Hide 'Your Movies & TV' Button</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="your-movies-and-tv"
+            name="your-movies-and-tv"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="your-podcasts">Hide 'Your Podcasts' Button</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="your-podcasts"
+            name="your-podcasts"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="courses">Hide 'Your Courses' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="courses" name="courses" />
+          <span class="slider round"></span>
+        </label>
+      </div> -->
+      <div class="checkbox-container">
+        <label for="you-show-more-less">Hide 'Show more/less' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="you-show-more-less" name="you-show-more-less" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
+      <div class="checkbox-container">
+        <label for="explore-panel">Hide 'Explore' Panel</label>
         <label class="switch">
           <input type="checkbox" id="explore-panel" name="explore-panel" />
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
-        <label for="youtube-panel">Hide Youtube Panel</label>
+        <label for="more-from-youtube-panel">Hide 'More from Youtube' Panel</label>
         <label class="switch">
-          <input type="checkbox" id="youtube-panel" name="youtube-panel" />
+          <input type="checkbox" id="more-from-youtube-panel" name="more-from-youtube-panel" />
           <span class="slider round"></span>
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="youtube-settings">Hide Youtube Settings</label>
+        <label for="youtube-premium"><span class="new-badge">NEW</span>Hide 'YouTube Premium' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="youtube-premium" name="youtube-premium" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="youtube-studio"><span class="new-badge">NEW</span>Hide' YouTube Studio' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="youtube-studio" name="youtube-studio" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="youtube-music">Hide 'YouTube Music' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="youtube-music" name="youtube-music" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="youtube-kids"><span class="new-badge">NEW</span>Hide 'YouTube Kids' Button</label>
+        <label class="switch">
+          <input type="checkbox" id="youtube-kids" name="youtube-kids" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
+      <div class="checkbox-container">
+        <label for="settings-panel">Hide Settings Panel</label>
         <label class="switch">
           <input
             type="checkbox"
-            id="youtube-settings"
-            name="youtube-settings"
+            id="settings-panel"
+            name="settings-panel"
           />
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
         <label for="youtube-footer">Hide Youtube Footer</label>
         <label class="switch">
@@ -488,19 +648,39 @@
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-settings-playback-speed">[Video Settings] Hide Playback Speed Option</label>
+        <label for="youtube-progress-bar">[Progress Bar] Remove Gradient</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="youtube-progress-bar"
+            name="youtube-progress-bar"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="checkbox-container">
+        <label for="video-progress-heat-map"><span class="new-badge">NEW</span>[Progress Bar] Hide Heat Map</label>
+        <label class="switch">
+          <input type="checkbox" id="video-progress-heat-map" name="video-progress-heat-map" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
+      <div class="checkbox-container">
+        <label for="video-settings-playback-speed">[Settings] Hide Playback Speed Option</label>
         <label class="switch">
           <input type="checkbox" id="video-settings-playback-speed" name="video-settings-playback-speed" />
           <span class="slider round"></span>
         </label>
       </div>
       <div class="checkbox-container">
-        <label for="video-settings-sleep-timer">[Video Settings] Hide Sleep Timer Option</label>
+        <label for="video-settings-sleep-timer">[Settings] Hide Sleep Timer Option</label>
         <label class="switch">
           <input type="checkbox" id="video-settings-sleep-timer" name="video-settings-sleep-timer" />
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
         <label for="video-suggestion-wall"
           >Hide Suggestion Wall (End of the Video)</label
@@ -514,7 +694,7 @@
           <span class="slider round"></span>
         </label>
       </div>
-
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
         <label for="video-title">Hide Title</label>
         <label class="switch">
@@ -656,6 +836,7 @@
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
         <label for="video-description">Hide Description</label>
         <label class="switch">
@@ -776,6 +957,7 @@
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
         <label for="video-comments">Hide Comments</label>
         <label class="switch">
@@ -797,6 +979,7 @@
           <span class="slider round"></span>
         </label>
       </div>
+      <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--color-accent); opacity: 0.3;" />
       <div class="checkbox-container">
         <label for="video-ads">Hide Ads Panel</label>
         <label class="switch">
@@ -855,17 +1038,7 @@
 
     <button class="collapsible">Extra Video Options</button>
     <div class="container" id="extra-video" style="display: none">
-      <div class="checkbox-container">
-        <label for="youtube-progress-bar">Remove Video Progress Bar Gradient</label>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="youtube-progress-bar"
-            name="youtube-progress-bar"
-          />
-          <span class="slider round"></span>
-        </label>
-      </div>
+      
       <div class="checkbox-container">
         <label for="video-thumbnail">Show Thumbnail Next To Video Player</label>
         <label class="switch">
@@ -908,9 +1081,9 @@
     </div>
 
     <p class="version">
-      Current Version 1.13.0 |
+      Current Version 1.13.2 |
       <a
-        href="https://github.com/Pedro-Gregorio/TubeMod/blob/master/documentation/ReleaseNotes.md"
+        href="https://github.com/Adr1GR/TubeMod/blob/master/documentation/ReleaseNotes.md"
         target="_blank"
         >Release Notes</a
       >

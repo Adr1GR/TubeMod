@@ -2,12 +2,15 @@ class ElementManager {
   constructor() {
     this.elements = [];
     this.observer = null;
-    this.initialize();
+    this.initialized = false;
+    this.initPromise = this.initialize();
   }
 
   async initialize() {
     const storedElements = await this.getStoredElements();
     this.elements = storedElements.map((el) => new YouTubeElement(el));
+    this.initialized = true;
+    return this.elements;
   }
 
   async getStoredElements() {
@@ -72,25 +75,50 @@ class ElementManager {
   setupObserver() {
     this.observer?.disconnect();
     this.observer = new MutationObserver(
-      debounce(this.handleMutations.bind(this), 100)
+      debounce(this.handleMutations.bind(this), 50)
     );
     this.observer.observe(document.body, { childList: true, subtree: true });
   }
 
   handleMutations() {
-    this.applyAllElements(getCurrentPageType());
+    this.applyAllElements(getCurrentPageType(), true);
   }
 
-  async applyAllElements(pageType) {
+  async applyAllElements(pageType, skipRoundedBorders = false) {
+    if (!this.initialized) {
+      await this.initPromise;
+    }
+
     const relevantElements = this.elements.filter(
       (el) => el.pageTypes.length === 0 || el.pageTypes.includes(pageType)
     );
 
-    await Promise.all(
-      relevantElements.map((element) => {
-        element.checked !== undefined ? element.toggle(element.checked) : null;
-      })
+    const elementsToProcess = skipRoundedBorders
+      ? relevantElements.filter((el) => el.id !== "remove-rounded-borders")
+      : relevantElements;
+
+    const criticalElements = elementsToProcess.filter(
+      (el) => el.checked && (el.styles?.display === 'none' || el.style === 'none' || el.property === 'display')
     );
+    const otherElements = elementsToProcess.filter(
+      (el) => !criticalElements.includes(el)
+    );
+
+    for (const element of criticalElements) {
+      if (element.checked !== undefined) {
+        element.toggle(element.checked);
+      }
+    }
+
+    if (otherElements.length > 0) {
+      requestAnimationFrame(() => {
+        otherElements.forEach((element) => {
+          if (element.checked !== undefined) {
+            element.toggle(element.checked);
+          }
+        });
+      });
+    }
   }
 }
 

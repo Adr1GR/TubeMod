@@ -38,13 +38,17 @@ class TubeMod {
     });
   }
 
-  handleLoad() {
+  async handleLoad() {
+    await this.elementManager.initPromise;
     this.elementManager.applyAllElements(getCurrentPageType());
     this.elementManager.setupObserver();
   }
 
   handleYouTubeNavigate() {
-    this.elementManager.applyAllElements(getCurrentPageType());
+    clearPageTypeCache();
+    this.elementManager.initPromise.then(() => {
+      this.elementManager.applyAllElements(getCurrentPageType());
+    });
   }
 }
 

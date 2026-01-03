@@ -5,7 +5,7 @@ class YouTubeElement {
 
   async toggle(hide) {
     this.checked = hide;
-    return this.handleVisibility(hide);
+    return Promise.resolve(this.handleVisibility(hide));
   }
 
   handleVisibility(hide) {
@@ -20,6 +20,30 @@ class YouTubeElement {
   }
 
   applyVisibility(hide) {
+    if (this.id === "remove-rounded-borders") {
+      const applyStyle = () => {
+        if (!document.head) {
+          setTimeout(applyStyle, 10);
+          return;
+        }
+
+        let styleElement = document.getElementById("tubemod-remove-rounded-borders");
+        const styleExists = styleElement !== null;
+        
+        if (hide && !styleExists) {
+          styleElement = document.createElement("style");
+          styleElement.id = "tubemod-remove-rounded-borders";
+          styleElement.textContent = "* { border-radius: 0 !important; }";
+          document.head.appendChild(styleElement);
+        } else if (!hide && styleExists) {
+          styleElement.remove();
+        }
+      };
+      
+      applyStyle();
+      return;
+    }
+
     const elements = document.evaluate(
       this.selector,
       document,
@@ -28,9 +52,22 @@ class YouTubeElement {
       null
     );
 
-    for (let i = 0; i < elements.snapshotLength; i++) {
+    const snapshotLength = elements.snapshotLength;
+    if (snapshotLength === 0) return;
+
+    for (let i = 0; i < snapshotLength; i++) {
       const element = elements.snapshotItem(i);
-      if (element) {
+      if (!element) continue;
+
+      if (this.styles && typeof this.styles === 'object') {
+        if (hide) {
+          Object.assign(element.style, this.styles);
+        } else {
+          Object.keys(this.styles).forEach(prop => {
+            element.style[prop] = "";
+          });
+        }
+      } else if (this.property && this.style !== undefined) {
         element.style[this.property] = hide ? this.style : "";
       }
     }
@@ -75,7 +112,7 @@ class YouTubeElement {
       }
     }
 
-    if (this.id === "you") {
+/*     if (this.id === "you") {
       const elementWithTopBorder = document.querySelector(
         "ytd-guide-collapsible-section-entry-renderer"
       );
@@ -84,9 +121,9 @@ class YouTubeElement {
           ? "none"
           : "1px solid var(--yt-spec-10-percent-layer)";
       }
-    }
+    } */
 
-    if (this.id === "my-clips") {
+/*     if (this.id === "my-clips") {
       const elementWithBottomBorder = document.querySelector(
         "ytd-guide-section-renderer"
       );
@@ -95,7 +132,7 @@ class YouTubeElement {
           ? "none"
           : "1px solid var(--yt-spec-10-percent-layer)";
       }
-    }
+    } */
 
     if (this.id === "video-thumbnail") {
       const thumbnailElement = document.getElementById(

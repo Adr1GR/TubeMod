@@ -7,7 +7,6 @@ This file contains the currently available features, as well as planned ones - a
 These are the features currently planned for future releases. More will be added upon users requests.
 
 - Allow Extension Popup to be placed anywhere / moved around
-- Remove Rounded borders across YouTube
 - Hide the Likes counter, instead of the button itself
 
 In later versions of TubeMod (2.0.0+), actions and themes will be introduced:
@@ -30,6 +29,7 @@ These changes affect every page on YouTube.
 - Hide Video Previews
 - Hide Video Thumbnails
 - Hide Video Extra Information (Views and Posted Time)
+- Remove Rounded borders across YouTube
 
 ### Header
 
